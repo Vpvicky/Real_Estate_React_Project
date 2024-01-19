@@ -1,0 +1,23 @@
+@import '../../Styles/common.scss';
+
+.btn_wrapper{
+
+    display: flex;
+    padding: 23px 61px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    text-align: center;
+    &_btn{
+        display: flex;
+        padding: 23px 61px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+}
+
+
