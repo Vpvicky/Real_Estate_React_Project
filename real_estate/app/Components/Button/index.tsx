@@ -1,11 +1,12 @@
-import React from "react";
+import React, { ButtonHTMLAttributes } from "react";
 import { IconType } from "react-icons";
 import './style.scss';
 import clsx from "clsx";
 
 interface ButtonWithIconsProps {
-  type: "btn" | "link" 
-  btnStyle?: 'text' | 'filled' | 'text-underline'
+  type: "btn" | "link" | "withIcon"
+  btnStyle?: 'primary' | 'content' | 'secondary' | 'link' | 'border'
+  btnType: ButtonHTMLAttributes<HTMLButtonElement>['type']
   children: React.ReactNode;
   onClick?: () => void;
   to?: string;
@@ -27,6 +28,7 @@ const ButtonComponent : React.FC<ButtonWithIconsProps> = ({
   btnStyle,
   value,
   size,
+  btnType
 }) => {
 
     const ButtonVarients = () : JSX.Element =>{
@@ -34,28 +36,29 @@ const ButtonComponent : React.FC<ButtonWithIconsProps> = ({
 switch(type) {
     case "btn":
       return (
-                  <button className={clsx(`btn ${btnStyle}`,{color: color})} type="submit" onClick={onClick}>
+                  <button className="" type={btnType} onClick={onClick}>
                     {LeftIcon && <LeftIcon />}
                     {children || value}
                     {RightIcon && <RightIcon />}
                   </button>
                 );
-    case 'link':
-        return (
-                  <a className={clsx(`btn ${btnStyle}` , 'link' , {color: color})} href={to} onClick={onClick}>
-                    {LeftIcon && <LeftIcon />}
-                    {children || value}
-                    {RightIcon && <RightIcon />}
-                  </a>
-                );
-                   
+
+     case 'withIcon':
+            return (
+                     <a className=""href={to}type={btnType} onClick={onClick}>
+                              {LeftIcon && <LeftIcon />}
+                              {children || value}
+                              {RightIcon && <RightIcon />}
+                            </a>
+                          );
+                
     default:
         return <></> ;          
 }
     }
 
 return(
-  <div className={clsx('btn_wrapper', size,{btn_wrapper_icon : RightIcon || LeftIcon} )}>
+  <div className="d-flex gap-10 align-middle justify-center border-r-5 py-6 px-9 w-64 bg-red"  >
     {ButtonVarients()}
   </div>
 )
