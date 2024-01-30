@@ -1,11 +1,10 @@
 import React, { ButtonHTMLAttributes } from "react";
 import { IconType } from "react-icons";
-import './style.scss';
-import clsx from "clsx";
+import style from'./Btn.module.scss';
 
 interface ButtonWithIconsProps {
-  type: "btn" | "link" | "withIcon"
-  btnStyle?: 'primary' | 'content' | 'secondary' | 'link' | 'border'
+  type: "btn" | "withIcon"
+  btnStyle?: 'primary' | 'secondary' 
   btnType: ButtonHTMLAttributes<HTMLButtonElement>['type']
   children: React.ReactNode;
   onClick?: () => void;
@@ -31,12 +30,15 @@ const ButtonComponent : React.FC<ButtonWithIconsProps> = ({
   btnType
 }) => {
 
-    const ButtonVarients = () : JSX.Element =>{
+  const ButtonVarients = () : JSX.Element =>{
+
+    const buttonStyle = btnStyle ? style[btnStyle] : '' ;
+    const btnSize = size === 'small'? style.small : size === 'medium'? style.medium : size === 'large'? style.large : '' ;
 
 switch(type) {
     case "btn":
       return (
-                  <button className="" type={btnType} onClick={onClick}>
+                  <button className={`${style.btn } ${btnSize} ${buttonStyle}` } type={btnType} onClick={onClick}>
                     {LeftIcon && <LeftIcon />}
                     {children || value}
                     {RightIcon && <RightIcon />}
@@ -45,7 +47,7 @@ switch(type) {
 
      case 'withIcon':
             return (
-                     <a className=""href={to}type={btnType} onClick={onClick}>
+                     <a className={`${style.btn_withIcon} ${btnSize} ${buttonStyle}`} href={to}type={btnType} onClick={onClick}>
                               {LeftIcon && <LeftIcon />}
                               {children || value}
                               {RightIcon && <RightIcon />}
@@ -58,7 +60,7 @@ switch(type) {
     }
 
 return(
-  <div className="d-flex gap-10 align-middle justify-center border-r-5 py-6 px-9 w-64 bg-red"  >
+  <div className={`${style.btn_wrapper} ${style.btnSize}`}  >
     {ButtonVarients()}
   </div>
 )

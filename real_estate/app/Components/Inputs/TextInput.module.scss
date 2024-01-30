@@ -1,0 +1,39 @@
+
+.textInputWrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  
+    .textInput {
+      max-width: 100%;
+      width: 588px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.15s ease-in-out;
+  
+      &:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+  
+      &.error {
+        border-color: #dc3545;
+      }
+    }
+  
+    .errorMessage {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 5px 10px;
+      margin-top: 5px;
+      background-color: #dc3545;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+  }
